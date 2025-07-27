@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EarthBubs – Baby Essentials</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fffefc;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .offers-section {
+      padding: 2rem;
+      background: #f0f4f8;
+    }
+
+    .row {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+  position: relative;
+  width: 280px;
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+
+  padding: 1rem; /* Internal content spacing */
+
+  /* ✅ Margin: controls card-to-card and row-to-row spacing */
+  margin: 0 auto;           /* center horizontally if needed */
+  flex: 0 0 280px;          /* prevent shrink/grow */
+}
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .new-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: #ff4081;
+      color: white;
+      padding: 5px 10px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      border-radius: 4px;
+      z-index: 2;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    .image-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.2rem 1rem;
+      background: #fff;
+    }
+
+    .image-wrap img {
+      max-width: 80%;
+      max-height: 160px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .card:hover .image-wrap img {
+      transform: scale(1.08);
+    }
+
+    .card-content {
+      background: linear-gradient(to bottom right, #1f7d8a, #f9f9f9);
+      clip-path: polygon(0 0, 100% 0, 100% 88%, 75% 100%, 40% 92%, 0 98%);
+      padding: 1rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-content h3 {
+      margin: 0.5rem 0;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .card-content p {
+      margin: 0.3rem 0;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .price-strike {
+      text-decoration: line-through;
+      color: #999;
+      font-size: 0.85rem;
+    }
+
+    .price {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #009688;
+    }
+
+    .buy-btn {
+      margin-top: 10px;
+      background: #00bcd4;
+      color: white;
+      padding: 10px 22px;
+      font-size: 0.9rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .buy-btn:hover {
+      background: #e6ecec;
+      transform: scale(1.05);
+    }
+    .pagination-box {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.pagination-box span {
+  background: #00bcd4;
+  color: rgb(12, 11, 11);
+  padding: 10px 20px;
+  border-radius: 40px;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  cursor: default;
+}
+.filter-container {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem 2rem;
+  z-index: 10;
+}
+
+.filter-btn {
+  background: #00bcd4;
+  color: white;
+  padding: 10px 18px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.filter-btn:hover {
+  background: #0097a7;
+}
+
+.filter-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  padding: 1rem;
+  border-radius: 10px;
+  display: none;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-width: 220px;
+}
+
+.filter-dropdown a {
+  font-size: 0.9rem;
+  color: #333;
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.filter-dropdown a:hover {
+  background: #e0f7fa;
+  color: #00796b;
+}
+
+.filter-container.active .filter-dropdown {
+  display: flex;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px; /* Add some horizontal spacing */
+  background-color: #fff; /* Customize as needed */
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-list {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-box {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.icon {
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1.5rem;
+  background-color: #fff;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo img {
+  height: 70px;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: #333;
+  padding: 0.5rem;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  flex-direction: row; /* Horizontal layout */
+  background: #fff;
+  border: 2px solid royalblue;
+  list-style:none;
+  padding: 0;
+  margin: 0;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  gap: 0;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  color: blue;
+}
+.dropdown-menu a{
+  border: rgb(49, 149, 231);
+  border-radius: 2px;
+}
+.dropdown-menu li {
+  width: 100%;
+  border: 2px solid royalblue;
+  border-radius: 2px;
+  margin: 0; /* removes spacing between items */
+  box-sizing: border-box;
+}
+
+.dropdown-menu a {
+  display: block;
+  width: 100%;
+  padding: 0.6rem 1rem;
+  color: #333;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+.dropdown-menu li:not(:last-child) {
+  margin-bottom: 4px;
+}
+
+    footer {
+      background-color: #8adfee;
+      padding: 3rem 2rem 1rem;
+      text-align: center;
+    }
+
+    .footer-columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+
+    .footer-columns h4 {
+      margin-bottom: 1rem;
+      color: #050404;
+    }
+
+    .footer-columns li {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      color: #0a0202;
+    }
+
+    .social-icons a {
+      margin: 0 10px;
+    }
+
+    .social-icons img {
+      vertical-align: middle;
+      width: 24px;
+      height: 24px;
+    }
+
+    .social-copy {
+      font-size: 0.85rem;
+      color: #070404;
+    }
+
+  </style>
+</head>
+<body>
+<header>
+  <nav class="navbar">
+  <!-- Logo Section -->
+  <div class="logo">
+    <a href="#">
+      <img src="logo.jpg" alt="Your Brand Logo" />
+    </a>
+    <p>EarBuds</p>
+  </div>
+
+  <!-- Navigation Links -->
+  <ul class="nav-list">
+    <li class="nav-item"><a href="index.html">Home</a></li>
+    <li class="nav-item dropdown">
+      <a href="#" class="dropdown-toggle">Products</a>
+      <ul class="dropdown-menu">
+        <li><a href="pamper.html">Pampers</a></li>
+        <li><a href="boy.html">Boy's Fashions</a></li>
+        <li><a href="girl.html">Girl's Fashions</a></li>
+        <li><a href="soap.html">Soap</a></li>
+        <li><a href="stroller.html">Stroller</a></li>
+        <li><a href="bottle.html">Bottle</a></li>
+      </ul>
+    </li>
+    <li class="nav-item"><a href="offer.html">Offers</a></li>
+    <li class="nav-item"><a href="about.html">About Us</a></li>
+    <li class="nav-item"><a href="contact.html">Contact</a></li>
+  </ul>
+
+  <!-- Extra Icons -->
+  <div class="nav-right">
+    <input type="text" class="search-box" placeholder="Search..." />
+    <span class="icon">🛒</span>
+    <span class="icon">👤</span>
+  </div>
+</nav>
+</header>
+<section class="product-listing">
+  <div class="filter-container" id="filterBox">
+    <button class="filter-btn" id="filterToggle">Filter ▾</button>
+    <div class="filter-dropdown">
+      <a href="pamper.html">Price(100-1000)</a>
+      <a href="girl.html">Price(1000-1500)</a>
+      <a href="stroller.html">Price(1500-10000)</a>
+      <a href="offer.html">Free Shipping(2000)</a>
+      <a href="#">Discount(6)</a>
+    </div>
+  </div>
+</section>
+
+
+<script>
+  const toggleBtn = document.getElementById("filterToggle");
+  const filterBox = document.getElementById("filterBox");
+
+  toggleBtn.addEventListener("click", () => {
+    filterBox.classList.toggle("active");
+  });
+</script>
+<section class="offers-section">
+  <h4>Home->Product-> Pamber's</h4><br>
+    <div class="row">
+      <!-- Card 1 -->
+      <div class="card">
+        <div class="new-tag">NEW</div>
+        <div class="image-wrap">
+          <img src="pp1.png" alt="Diaper Combo">
+        </div>
+        <div class="card-content">
+          <h3>Diaper Pants</h3>
+          <p>⭐⭐⭐⭐⭐</p>
+          <p class="price-strike">MRP ₹800.00</p>
+          <p class="price">₹680.00</p>
+          <button class="buy-btn">Buy</button>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card">
+        <div class="new-tag">NEW</div>
+        <div class="image-wrap">
+          <img src="pp2.png" alt="Diaper Combo">
+        </div>
+        <div class="card-content">
+          <h3>SuperCute's</h3>
+          <p>⭐⭐⭐⭐⭐</p>
+          <p class="price-strike">MRP ₹500.00</p>
+          <p class="price">₹450.00</p>
+          <button class="buy-btn">Buy</button>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card">
+        <div class="new-tag">NEW</div>
+        <div class="image-wrap">
+          <img src="pp3.png" alt="Diaper Combo">
+        </div>
+        <div class="card-content">
+          <h3>Mee Premium</h3>
+          <p>⭐⭐⭐⭐⭐</p>
+          <p class="price-strike">MRP ₹1044.00</p>
+          <p class="price">₹700.00</p>
+          <button class="buy-btn">Buy</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Card 4 -->
+      <div class="card">
+        <div class="new-tag">NEW</div>
+        <div class="image-wrap">
+          <img src="pp4.png" alt="Diaper Combo">
+        </div>
+        <div class="card-content">
+          <h3>Mee Diaper Pants</h3>
+          <p>⭐⭐⭐⭐⭐</p>
+          <p class="price-strike">MRP ₹860.00</p>
+          <p class="price">₹580.00</p>
+          <button class="buy-btn">Buy</button>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="card">
+        <div class="new-tag">NEW</div>
+        <div class="image-wrap">
+          <img src="pp5.png" alt="Diaper Combo">
+        </div>
+        <div class="card-content">
+          <h3>mee Pampers</h3>
+          <p>⭐⭐⭐⭐⭐</p>
+          <p class="price-strike">MRP ₹950.00</p>
+          <p class="price">₹800.00</p>
+          <button class="buy-btn">Buy</button>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="card">
+        <div class="new-tag">NEW</div>
+        <div class="image-wrap">
+          <img src="pp6.png" alt="Diaper Combo">
+        </div>
+        <div class="card-content">
+          <h3>Diaper Combo</h3>
+          <p>⭐⭐⭐⭐⭐</p>
+          <p class="price-strike">MRP ₹1850.00</p>
+          <p class="price">₹1300.00</p>
+          <button class="buy-btn">Buy</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+<div class="pagination-box">
+  <span>&larr; 1 2 3 4 5 &rarr;</span>
+</div>
+<footer>
+  <div class="footer-columns">
+    <div>
+      <h4>KNOW</h4>
+      <hr>
+    
+        <li><a href="#">About EarthBubs</a></li>
+        <li><a href="#">About Our Store</a></li>
+        <li><a href="#">Bulk Orders & Gifts</a></li>
+  
+    </div>
+    <div>
+      <h4>TERMS & POLICIES</h4>
+      <hr>
+        <li><a href="#">Shipping & Returns</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">FAQs</a></li>
+    </div>
+    <div>
+      <h4>CONTACT US</h4>
+      <hr>
+        <li>Email: earthbubs@co.in</li>
+        <li>Call: +91 1234567890</li>
+        <li>Complaints: 1800 202 2222</li>
+        <li>Chat Time: Mon–Sat,9:00 AM – 8:00 PM</li>
+        <li>Support: <a href="#">earbuds.com</a></li>
+    </div>
+    <div>
+      <h4>Follow us</h4>
+      <hr>
+    <a href="#"><img src="in.jpg" alt="Instagram" width="60"></a>
+    <a href="#"><img src="face.jpg" alt="Facebook" width="60"></a>
+    <a href="#"><img src="tw.jpg" alt="Twitter"width="60"></a>
+  </div>
+</div>
+<hr>
+  <div class="social-copy">
+    &copy; 2025 EarthBubs. All rights reserved.
+  </div>
+</footer>
+</html>

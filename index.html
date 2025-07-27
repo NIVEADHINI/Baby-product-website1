@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EarthBubs – Baby Essentials</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fffefc;
+      color: #333;
+      line-height: 1.6;
+    }
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1.5rem;
+  background-color: #fff;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo img {
+  height: 70px;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: #333;
+  padding: 0.5rem;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  flex-direction: row; /* Horizontal layout */
+  background: #fff;
+  border: 2px solid royalblue;
+  list-style:none;
+  padding: 0;
+  margin: 0;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  gap: 0;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  color: blue;
+}
+.dropdown-menu a{
+  border: rgb(49, 149, 231);
+  border-radius: 2px;
+}
+.dropdown-menu li {
+  width: 100%;
+  border: 2px solid royalblue;
+  border-radius: 2px;
+  margin: 0; /* removes spacing between items */
+  box-sizing: border-box;
+}
+
+.dropdown-menu a {
+  display: block;
+  width: 100%;
+  padding: 0.6rem 1rem;
+  color: #333;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+.dropdown-menu li:not(:last-child) {
+  margin-bottom: 4px;
+}
+ footer {
+      background-color: #8adfee;
+      padding: 3rem 2rem 1rem;
+      text-align: center;
+    }
+
+    .footer-columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+
+    .footer-columns h4 {
+      margin-bottom: 1rem;
+      color: #050404;
+    }
+
+    .footer-columns li {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      color: #0a0202;
+    }
+
+    .social-icons a {
+      margin: 0 10px;
+    }
+
+    .social-icons img {
+      vertical-align: middle;
+      width: 24px;
+      height: 24px;
+    }
+
+    .social-copy {
+      font-size: 0.85rem;
+      color: #070404;
+    }
+
+    .hero-section {
+  position: relative;
+  padding: 6rem 2rem;
+  text-align: center;
+  background: linear-gradient(to bottom right, #a2dfff, #e1f5ff);
+  overflow: hidden;
+  color: #004d7a;
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  background: url('baby.jpg.png') right/contain no-repeat;
+  opacity: 0.8; /* Adjust for clarity */
+  z-index: 0;
+  filter: brightness(1.05) contrast(1.1);
+}
+
+.rainbow-overlay {
+  position: absolute;
+  inset: 0;
+  background: conic-gradient(from 180deg at center, 
+              #ffb6c1, #ffe4b5, #90ee90, #add8e6, #dda0dd, #ffb6c1);
+  opacity: 0.1;
+  animation: shimmerRainbow 40s linear infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes shimmerRainbow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.product-section {
+  padding: 4rem 2rem;
+  background: #f0faff;
+}
+
+.product-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.product-card {
+  position: relative;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 22%;
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #38b6ff;
+  color: white;
+  padding: 6px 10px;
+  font-size: 0.75rem;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.product-card h3 {
+  margin: 1rem 0 0.5rem;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.stars {
+  font-size: 1rem;
+  color: #ffbb00;
+  margin-bottom: 0.5rem;
+}
+
+.prices {
+  margin-bottom: 1rem;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: #888;
+  margin-right: 8px;
+}
+
+.new-price {
+  color: #e6007e;
+  font-weight: bold;
+}
+
+.shop-btn {
+  display: inline-block;
+  padding: 10px 16px;
+  background: #00bfff;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.shop-btn:hover {
+  background: #0099cc;
+  transform: scale(1.05);
+}
+.product-card {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.product-card::after {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 8px;
+  background: linear-gradient(90deg, #dd2007, #15c705);
+  border-radius: 50px;
+  box-shadow: 0 0 12px rgba(255, 110, 196, 0.4);
+  animation: shimmerSlide 3s infinite linear;
+  pointer-events: none;
+}
+
+@keyframes shimmerSlide {
+  0% {
+    transform: translateX(-50%) scaleX(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateX(-48%) scaleX(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) scaleX(1);
+    opacity: 0.7;
+  }
+} 
+h2 {
+  text-align: center;
+  color: #070606;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #444;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.trust-section {
+  padding: 60px 20px;
+  background-color: #f9fafe;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+.trust-grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  gap: 24px;
+  flex-wrap: nowrap; /* Prevents wrapping */
+  overflow-x: auto;   /* Adds horizontal scroll if needed */
+  padding: 0 16px;
+}
+
+.trust-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* inner-card at bottom */
+  align-items: center;
+  background: white;
+  border: 2px solid #e0ebf5;
+  border-radius: 16px;
+  padding: 80px 16px 24px; /* leave space for icon at top */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.trust-card:hover {
+  transform: translateY(-4px);
+}
+
+.card-icon {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  z-index: 2;
+}
+
+.inner-card {
+  background-color: #eff6ff;
+  padding: 16px;
+  border-radius: 12px;
+  width: 100%;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.04);
+}
+
+.best-sellers {
+  padding: 60px 20px;
+  background: #f9fafe;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2rem;
+  color: #0077cc;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 40px;
+}
+
+.best-grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: auto;
+  gap: 24px;
+  overflow-x: auto;
+  padding: 0 16px;
+  scroll-snap-type: x mandatory;
+}
+
+/* Each card setup */
+.best-card {
+  position: relative;
+  flex: 0 0 280px; /* from 260px */
+  padding: 28px 20px 52px; /* add a bit more space */
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 24px 16px 48px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  margin: 0 12px; /* adds spacing left and right */
+
+}
+
+/* NEW badge */
+.badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #0077cc;
+  color: #fff;
+  font-size: 0.8rem;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  z-index: 2;
+}
+
+/* Product image */
+.img-wrapper img {
+  width: 108px;
+  height: 108px;
+  object-fit: contain;
+  margin-bottom: 12px;
+}
+
+/* Rating */
+.rating {
+  font-size: 1rem;
+  color: #f5b700;
+  margin-bottom: 8px;
+}
+
+/* Product name */
+.product-name {
+  font-size: 1rem;
+  color: #004d99;
+  margin-bottom: 8px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Price section */
+.price {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+
+.price .mrp {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.price .discount {
+  color: #0077cc;
+  font-weight: bold;
+}
+
+/* Buy button */
+.buy-btn {
+  background: #0077cc;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  font-size: 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.buy-btn:hover {
+  background: #005fa3;
+}
+
+/* Z-shape animated glow at bottom */
+.card-bottom-glow {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 20px;
+  background: linear-gradient(to right, #00c6ff, #0072ff);
+  clip-path: polygon(0% 100%, 10% 60%, 30% 80%, 50% 65%, 70% 85%, 90% 60%, 100% 100%);
+  animation: glowZPulse 3s infinite ease-in-out;
+  opacity: 0.75;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes glowZPulse {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateX(-50%) scale(1.15);
+    opacity: 1;
+  }
+}
+.trending-products {
+  background: #f7fbff;
+  padding: 40px 24px;
+  max-width: 1100px;
+  margin: auto;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.trending-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.trending-header h2 {
+  font-size: 2.2rem;
+  color: #004d99;
+  margin-bottom: 8px;
+}
+
+.trending-header .subtext {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.trending-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-image img {
+  max-width: 500px;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+}
+
+.card-content {
+  max-width: 500px;
+}
+
+.product-title {
+  font-size: 1.6rem;
+  color: #0077cc;
+  margin-bottom: 12px;
+}
+
+.product-description {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.product-age {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.buy-now {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #00aaff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.buy-now:hover {
+  background: #0077cc;
+}
+
+.feeding-section {
+  background: #f0f9ff;
+  padding: 60px 20px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.feeding-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.feeding-left {
+  flex: 1;
+  min-width: 300px;
+}
+
+.feeding-left h2 {
+  font-size: 2rem;
+  color: #0077cc;
+  margin-bottom: 16px;
+}
+
+.feeding-left .desc {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.buy-btn {
+  display: inline-block;
+  background: #00b7ee;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.buy-btn:hover {
+  background: #0077cc;
+}
+
+.feeding-right {
+  flex: 1;
+  min-width: 300px;
+  text-align: center;
+}
+
+.image-box img {
+  max-width: 500px;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+.pampers-section {
+  background-color: #fefeff;
+  padding: 60px 20px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+  font-family: 'Segoe UI', sans-serif;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.pampers-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 48px;
+}
+
+.pampers-image {
+  flex: 1;
+  min-width: 320px;
+  text-align: center;
+}
+
+.pampers-image img {
+  width: 100%;
+  max-width: 480px; /* ⬆️ Increased from 320px */
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+.pampers-text {
+  flex: 1;
+  min-width: 300px;
+}
+
+.pampers-text h2 {
+  font-size: 2rem;
+  color: #00b7ee;
+  margin-bottom: 16px;
+}
+
+.pampers-text p {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.buy-btn {
+  display: inline-block;
+  background: #00b7ee;
+  color: #fff;
+  font-weight: bold;
+  padding: 12px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.buy-btn:hover {
+  background: #0077cc;
+}
+
+.testimonial-row {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: nowrap;
+  padding: 40px 20px;
+}
+
+.testimonial-card {
+  position: relative;
+  width: 30%;
+  background: #f7f5f5;
+  padding: 20px;
+  border: 3px solid #227fbd;
+  box-shadow: 12px 12px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 30% 10% 30% 10% / 10% 30% 10% 30%; /* Irregular shape */
+  clip-path: polygon(0 0, 100% 0, 100% 95%, 90% 100%, 10% 100%, 0 95%);
+  transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+}
+
+.testimonial-card img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.stars {
+  color: #ffc107;
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.feedback {
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.name {
+  font-weight: bold;
+  color: #333;
+  font-size: 14px;
+}
+.faq-section {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f8fafc;
+}
+
+.faq-section h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.faq-card {
+  border-bottom: 1px solid #ddd;
+  padding: 0;
+}
+
+.faq-toggle {
+  width: 100%;
+  padding: 1.2rem 1.5rem;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 1.1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  color: #0073aa;
+  font-weight: 600;
+}
+
+.arrow {
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.faq-toggle.active .arrow {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  padding: 0 1.5rem;
+  max-height: 0;
+  overflow: hidden;
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+}
+
+.faq-toggle.active + .faq-answer {
+  max-height: 400px;
+  padding: 1rem 1.5rem 1.5rem;
+}
+</style>
+</head>
+<body>
+<header>
+  <nav class="navbar">
+  <!-- Logo Section -->
+  <div class="logo">
+    <a href="#">
+      <img src="logo.jpg" alt="Your Brand Logo" />
+    </a>
+    <p>EarBuds</p>
+  </div>
+
+  <!-- Navigation Links -->
+  <ul class="nav-list">
+    <li class="nav-item"><a href="index.html">Home</a></li>
+    <li class="nav-item dropdown">
+      <a href="#" class="dropdown-toggle">Products</a>
+      <ul class="dropdown-menu">
+        <li><a href="pamper.html">Pampers</a></li>
+        <li><a href="boy.html">Boy's Fashions</a></li>
+        <li><a href="girl.html">Girl's Fashions</a></li>
+        <li><a href="soap.html">Soap</a></li>
+        <li><a href="stroller.html">Stroller</a></li>
+        <li><a href="bottle.html">Bottle</a></li>
+      </ul>
+    </li>
+    <li class="nav-item"><a href="offer.html">Offers</a></li>
+    <li class="nav-item"><a href="about.html">About Us</a></li>
+    <li class="nav-item"><a href="contact.html">Contact</a></li>
+  </ul>
+
+  <!-- Extra Icons -->
+  <div class="nav-right">
+    <input type="text" class="search-box" placeholder="Search..." />
+    <span class="icon">🛒</span>
+    <span class="icon">👤</span>
+  </div>
+</nav>
+</header>
+<body>
+
+  <section class="hero-section">
+  <div class="hero-background"></div>
+  <div class="rainbow-overlay"></div>
+
+  <div class="hero-content">
+    <h1>Gentle Care for Growing Joy</h1>
+    <p>Premium baby care products crafted with love, purity, and the softest materials – because your baby deserves the best.</p>
+</section>
+
+<section class="product-section">
+    <h2>Featured Categories</h2>
+  <p class="subtitle">Everything Your Baby Needs</p>
+  <div class="product-container">
+ <div class="product-card">
+      <div class="badge">New</div>
+      <img src="f1.png" alt="Diapers & Pampers" />
+      <h3>Diapers & Pampers</h3>
+      <div class="stars">⭐⭐⭐⭐☆</div>
+      <div class="prices">
+        <span class="old-price">₹499</span>
+        <span class="new-price">₹399</span>
+      </div>
+      <a href="pamper.html" class="shop-btn">Shop Now</a>
+    </div>
+
+    <!-- Repeat for other cards -->
+    <!-- Card 2 -->
+    <div class="product-card">
+      <div class="badge">New</div>
+      <img src="f2.png" alt="Baby Dress" />
+      <h3>Baby Dress</h3>
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+      <div class="prices">
+        <span class="old-price">₹799</span>
+        <span class="new-price">₹599</span>
+      </div>
+      <a href="girl.html" class="shop-btn">Shop Now</a>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="product-card">
+      <div class="badge">New</div>
+      <img src="f3.png" alt="Baby Soap" />
+      <h3>Baby Soap</h3>
+      <div class="stars">⭐⭐⭐⭐☆</div>
+      <div class="prices">
+        <span class="old-price">₹199</span>
+        <span class="new-price">₹149</span>
+      </div>
+      <a href="soap.html" class="shop-btn">Shop Now</a>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="product-card">
+      <div class="badge">New</div>
+      <img src="f4.png" alt="Baby Stroller & Prams" />
+      <h3>Stroller & Prams</h3>
+      <div class="stars">⭐⭐⭐⭐☆</div>
+      <div class="prices">
+        <span class="old-price">₹3499</span>
+        <span class="new-price">₹2999</span>
+      </div>
+      <a href="stroller.html" class="shop-btn">Shop Now</a>
+    </div>
+</div>
+</section>
+
+<section class="trust-section">
+  <h2>Why Parents Trust Us</h2>
+  <p class="subtitle">Designed with Love. Backed by Science.</p>
+  <div class="trust-grid">
+    <div class="trust-card">
+      <img src="p1.png" alt="Dermatologist Approved" class="card-icon" />
+      <div class="inner-card">
+        <h3>Dermatologist Approved</h3>
+        <p>Every product is tested and safe for even the most sensitive baby skin.</p>
+      </div>
+    </div>
+        <div class="trust-card">
+      <img src="p2.png" alt="Natural Ingredients" class="card-icon" />
+      <div class="inner-card">
+        <h3>Natural & Non-Toxic Ingredients</h3>
+        <p>We use only gentle, plant-based formulas free from harsh chemicals.</p>
+      </div>
+    </div>
+
+    <div class="trust-card">
+      <img src="p3.png" alt="Loved by Parents" class="card-icon" />
+      <div class="inner-card">
+        <h3>Loved by Thousands of Parents</h3>
+        <p>Real reviews. Real results. Trusted by families across the country.</p>
+      </div>
+    </div>
+
+    <div class="trust-card">
+      <img src="p4.png" alt="Eco Friendly" class="card-icon" />
+      <div class="inner-card">
+        <h3>Eco-Friendly Promise</h3>
+        <p>From biodegradable packaging to cruelty-free manufacturing—we care for the planet as much as your baby.</p>
+      </div>
+    </div>
+
+    <div class="trust-card">
+      <img src="p5.png" alt="Shipping" class="card-icon" />
+      <div class="inner-card">
+        <h3>Fast & Reliable Shipping</h3>
+        <p>We deliver your baby's essentials swiftly and safely, because every moment counts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="best-sellers">
+  <h2 class="section-title">Best Sellers</h2>
+  <p class="subtitle">Our Most Loved Products</p>
+
+  <div class="best-grid">
+    <div class="best-card">
+<div class="card-bottom-glow"></div>
+      <div class="badge">NEW</div>
+
+      <div class="img-wrapper">
+        <img src="bs1.png" alt="Wipes" />
+      </div>
+
+      <div class="rating">★ 4.5</div>
+
+      <h3 class="product-name">Wipes</h3>
+
+      <p class="price">
+        <span class="mrp">MRP ₹1444.00</span>
+        <span class="discount">₹1299.00</span>
+      </p>
+
+      <button class="buy-btn">Buy</button>
+    </div>
+<div class="best-card">
+  <div class="card-bottom-glow"></div>
+      <div class="badge">NEW</div>
+
+      <div class="img-wrapper">
+        <img src="bs2.png" alt="Wipes" />
+      </div>
+
+      <div class="rating">★ 4.5</div>
+
+      <h3 class="product-name">Mama Miel Baby</h3>
+
+      <p class="price">
+        <span class="mrp">MRP ₹1444.00</span>
+        <span class="discount">₹1299.00</span>
+      </p>
+
+      <button class="buy-btn">Buy</button>
+    </div>
+<div class="best-card">
+  <div class="card-bottom-glow"></div>
+      <div class="badge">NEW</div>
+
+      <div class="img-wrapper">
+        <img src="bs3.png" alt="Wipes" />
+      </div>
+
+      <div class="rating">★ 4.5</div>
+
+      <h3 class="product-name">Zibuyu</h3>
+
+      <p class="price">
+        <span class="mrp">MRP ₹1444.00</span>
+        <span class="discount">₹1299.00</span>
+      </p>
+
+      <button class="buy-btn">Buy</button>
+    </div>
+
+  </div>
+</section>
+
+<section class="trending-products">
+  <div class="trending-header">
+    <h2>Trending Products</h2>
+    <p class="subtext">Parent Favorites, Baby Approved</p>
+  </div>
+
+  <div class="trending-card">
+    <div class="card-image">
+      <img src="t1.png" alt="Baby Stroller" width="200">
+    </div>
+    <div class="card-content">
+      <h3 class="product-title">Baby Stroller</h3>
+      <p class="product-description">
+        Smooth, stylish, and designed for safety, ease, and flexibility—perfect for every little adventure.
+        Lightweight, foldable, and parent-friendly for life on the go.
+      </p>
+      <p class="product-age">Suitable for babies aged 6 months to 2 years.</p>
+      <a href="#" class="buy-now">Buy Now</a>
+    </div>
+  </div>
+</section>
+
+<section class="feeding-section">
+  <div class="feeding-container">
+    <div class="feeding-left">
+      <h2>Feeding Bottle</h2>
+      <p class="desc">
+        Made from 100% BPA-free materials with a soft silicone nipple and anti-colic design. Promotes smooth feeding while ensuring safety, comfort, and convenience for babies and parents.
+      </p>
+      <a href="#" class="buy-btn">Buy Now</a>
+    </div>
+
+    <div class="feeding-right">
+      <div class="image-box">
+        <img src="fb1.png" alt="Feeding Bottle" />
+      </div>
+      <div class="product-tagline">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pampers-section">
+  <div class="pampers-content">
+    <div class="pampers-image">
+      <img src="f1.png" alt="Mee Mee Small Pants Diapers" />
+    </div>
+    <div class="pampers-text">
+      <h2>Pamper</h2>
+      <p>Keep your baby dry, comfy, and smiling all day with our ultra-soft diapers. Designed with leak-lock technology and breathable layers for extra protection. Gentle on delicate skin, perfect for day and night comfort.</p>
+      <a href="#" class="buy-btn">Buy Now</a>
+    </div>
+  </div>
+</section>
+ 
+<section class="testimonials">
+  <h2>Customer Testimonials</h2>
+  <p class="subtitle">Parent Favorites, Baby Approved</p>
+
+  <div class="testimonial-row">
+    <article class="testimonial-card">
+      <img src="c2.jpg" alt="Rahul S. – Bangalore" />
+      <div class="stars" aria-label="5 stars">★★★★★</div>
+      <p class="feedback">The stroller is lightweight and folds easily. Perfect for city walks!</p>
+      <p class="name">Rahul S. – Bangalore</p>
+    </article>
+
+    <article class="testimonial-card">
+      <img src="c1.jpg" alt="Priya M. – Chennai" />
+      <div class="stars" aria-label="5 stars">★★★★★</div>
+      <p class="feedback">EarthBubs diapers are so gentle. No leaks, no rashes – love it!</p>
+      <p class="name">Priya M. – Chennai</p>
+    </article>
+
+    <article class="testimonial-card">
+      <img src="c3.jpg" alt="Anika R. – Mumbai" />
+      <div class="stars" aria-label="5 stars">★★★★★</div>
+      <p class="feedback">The baby Soap kit is amazing – natural scent, no irritation!</p>
+      <p class="name">Anika R. – Mumbai</p>
+    </article>
+  </div>
+</section>
+<section class="faq-section">
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="faq-card">
+    <button class="faq-toggle">
+      <span>Are your products safe for newborns?</span>
+      <span class="arrow">▼</span>
+    </button>
+    <div class="faq-answer">
+      Yes, all our products are dermatologically tested and made with gentle, non-toxic ingredients that are safe for newborns and sensitive skin.
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <button class="faq-toggle">
+      <span>How long does delivery take?</span>
+      <span class="arrow">▼</span>
+    </button>
+    <div class="faq-answer">
+      Delivery typically takes 3–5 business days, depending on your location.
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <button class="faq-toggle">
+      <span>Can I return or exchange a product?</span>
+      <span class="arrow">▼</span>
+    </button>
+    <div class="faq-answer">
+      Yes, we offer hassle-free returns and exchanges within 10 days of delivery.
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <button class="faq-toggle">
+      <span>What payment methods do you accept?</span>
+      <span class="arrow">▼</span>
+    </button>
+    <div class="faq-answer">
+      We accept all major cards, UPI, Net Banking, and Cash on Delivery.
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <button class="faq-toggle">
+      <span>Are your skincare products organic or natural?</span>
+      <span class="arrow">▼</span>
+    </button>
+    <div class="faq-answer">
+      Our skincare range uses natural, plant-based ingredients and avoids harsh chemicals.
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <button class="faq-toggle">
+      <span>How can I contact customer support?</span>
+      <span class="arrow">▼</span>
+    </button>
+    <div class="faq-answer">
+      You can reach us via our live chat, email, or phone support – available 24/7.
+    </div>
+  </div>
+</section>
+<script>
+  document.querySelectorAll('.faq-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('active');
+
+      // Optional: collapse others
+      document.querySelectorAll('.faq-toggle').forEach(other => {
+        if (other !== btn) other.classList.remove('active');
+      });
+    });
+  });
+</script>
+</body>
+<footer>
+  <div class="footer-columns">
+    <div>
+      <h4>KNOW</h4>
+      <hr>
+    
+        <li><a href="#">About EarthBubs</a></li>
+        <li><a href="#">About Our Store</a></li>
+        <li><a href="#">Bulk Orders & Gifts</a></li>
+  
+    </div>
+    <div>
+      <h4>TERMS & POLICIES</h4>
+      <hr>
+        <li><a href="#">Shipping & Returns</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">FAQs</a></li>
+    </div>
+    <div>
+      <h4>CONTACT US</h4>
+      <hr>
+        <li>Email: earthbubs@co.in</li>
+        <li>Call: +91 1234567890</li>
+        <li>Complaints: 1800 202 2222</li>
+        <li>Chat Time: Mon–Sat,9:00 AM – 8:00 PM</li>
+        <li>Support: <a href="#">earbuds.com</a></li>
+    </div>
+    <div>
+      <h4>Follow us</h4>
+      <hr>
+    <a href="#"><img src="in.jpg" alt="Instagram" width="60"></a>
+    <a href="#"><img src="face.jpg" alt="Facebook" width="60"></a>
+    <a href="#"><img src="tw.jpg" alt="Twitter"width="60"></a>
+  </div>
+</div>
+<hr>
+  <div class="social-copy">
+    &copy; 2025 EarthBubs. All rights reserved.
+  </div>
+</footer>
+</html>
